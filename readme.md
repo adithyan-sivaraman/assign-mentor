@@ -158,9 +158,17 @@ http://localhost:3000/mentor/show/5
 2. Install dependencies using `npm install`.
 3. Start the server using `npm run start`.
 4. In case of Development environment, start the server using `npm run dev'.
-5. Create a .env file in root directory and set following environment variables
-        - MONGO_DB={your database name}
-        - MONGO_URL={your database url}
+5. Create a .env file in root directory and set environment variables
+        - In case of local mongo db
+                - MONGO_DB={your database name}
+                - MONGO_URL={your database url}
+        - In case of cloud mongo db
+                - MONGO_DB={your database name}
+                - MONGO_USER={username}
+                - MONGO_PASSWORD={password}
+                - MONGO_CLUSTER={cluster name} eg. `cluster.oaqy8cr.mongodb.net`
+
+6. in connection.js set local or cloud url in mongoose.connect function
 
 ## Usage
 

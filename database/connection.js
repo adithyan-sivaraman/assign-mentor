@@ -2,13 +2,21 @@ import mongoose from "mongoose";
 
 import 'dotenv/config'
 
+//required for local mongodb
 const dbname = process.env.MONGO_DB
-const dburl = process.env.MONGO_URL;
+const localDBUrl = process.env.MONGO_URL;
 
-const localUrl = `${dburl}/${dbname}`;
+//required for cloud mongodb
+const username = process.env.MONGO_USER;
+const  password =  process.env.MONGO_PASSWORD;
+const clusterName = process.env.MONGO_CLUSTER || '';
+
+
+const cloudUrl = `mongodb+srv://${username}:${password}@${clusterName}/${dbname}?retryWrites=true&w=majority`;
+const localUrl = `${localDBUrl}/${dbname}`;
 const connect = async ()=>{
 try{
-await mongoose.connect(localUrl,{
+await mongoose.connect(cloudUrl,{
     useNewUrlParser: true,
 });
 console.log('connection established');

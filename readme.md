@@ -158,7 +158,7 @@ http://localhost:3000/mentor/show/5
 2. Install dependencies using `npm install`.
 3. Start the server using `npm run start`.
 4. In case of Development environment, start the server using `npm run dev'.
-5. Create a .env file in root directory and set environment variables
+5. Create a .env file in root directory and set environment variables.
    
         - In case of local mongo db
                 - MONGO_DB={your database name}

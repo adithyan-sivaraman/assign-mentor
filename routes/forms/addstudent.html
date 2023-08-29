@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Student</title>
+    <style>
+        label,input,select{
+            display: inline-block;
+            width: 200px;
+            padding: 5px;
+            font-size: 18px;
+        }
+        label{
+          font-weight: bold;
+        }
+        input{
+            text-transform: uppercase !important;
+        }
+        button{
+            font-size: 20px;
+            background-color: blue;
+            color: white;
+            padding: 5px;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: background-color 0.5s ease;
+        }
+        button:hover{
+            background-color: lightblue;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Add Student</h1>
+    <form>
+        <label for="fname">First Name</label>
+        <input type="text" name="fname" required id="fname">
+        <br><br>
+        <label for="lname">Last Name</label>
+        <input type="text" name="lname" required id="lname">
+        <br><br>
+        <label for="dob">Date of Birth</label>
+        <input type="date" name="dob" required id="dob">
+        <br><br>
+        <label for="batch">Batch</label>
+        <select type="text" name="batch" required id="batch"> 
+        <option value="">-- Select --</option>
+        <option value="B4445WETamil">B4445WETamil</option>
+        <option value="B46WETamil">B46WETamil</option>
+        <option value="B47WEENG">B47WEENG</option>
+        <option value="B49WENG">B49WENG</option>
+        </select>
+        <br><br>
+        <label for="email">Email</label>
+        <input type="email" name="email" required id="email">
+        <br><br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+<script>
+    const form = document.querySelector('form');
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const formData = {}
+      let inputs = document.querySelectorAll("input,select");
+      inputs.forEach(input => {
+        formData[input.name] = input.value;
+
+      })
+      console.log(formData);
+      try{
+        const response = await fetch('/student/add/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:JSON.stringify(formData)
+      });
+      const responseText = await response.text();
+      
+      if (response.status === 200) {
+        alert(responseText);
+        window.location.href = '/student/add';
+      }
+      }
+      catch(err) {
+        console.log(err)
+      }
+     
+    });
+  </script>
+</html>

@@ -69,7 +69,6 @@
         formData[input.name] = input.value;
 
       })
-      console.log(formData);
       try{
         const response = await fetch('/student/add/submit', {
         method: 'POST',
